@@ -1,4 +1,4 @@
-# Noise and Domain-Shift Robustness of Audio Representations for Cross-Domain Bioacoustic Retrieval: From Xeno-Canto to Environmental Soundscapes
+# Noise and Domain-Shift Robustness of Frozen Audio Representations for Bioacoustic Similarity Retrieval: A Controlled Evaluation on BirdCLEF+ 2026 with Field-Recorded Tropical Noise
 
 **Fabio Banyu Cyto** (123450104)  
 *DSIC Research Group, Program Studi Sains Data, Institut Teknologi Sumatera*  

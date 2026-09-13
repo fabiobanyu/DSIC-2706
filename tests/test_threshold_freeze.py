@@ -4,9 +4,13 @@ Memvalidasi bahwa threshold tau dibekukan dari set kalibrasi dan tidak dihitung 
 """
 
 import sys
+from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, "d:/FILE AND TASK/TA")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from src.calibrate_threshold import calibrate_threshold_tau, evaluate_open_set_with_frozen_tau
 
 

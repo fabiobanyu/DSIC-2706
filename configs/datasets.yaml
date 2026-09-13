@@ -1,81 +1,36 @@
-# Dataset & Species Configuration
-# Topic: DSIC27-06 Bioacoustic Similarity Retrieval under Noise and Domain Shift
-
 datasets:
   target_birds:
-    source: "Xeno-Canto"
-    geographic_focus: "Sumatra & Indonesia Verified"
-    num_species: 16
-    manifest_path: "data/manifests/target_birds_manifest.csv"
-    split_manifest_path: "data/manifests/dataset_split.csv"
-    audio_directory: "data/xeno_canto/"
-    species_list:
-      - species_key: "Acrocephalus_orientalis"
-        scientific_name: "Acrocephalus orientalis"
-        common_name: "Oriental Reed Warbler"
-      - species_key: "Aethopyga_siparaja"
-        scientific_name: "Aethopyga siparaja"
-        common_name: "Crimson Sunbird"
-      - species_key: "Alcedo_atthis"
-        scientific_name: "Alcedo atthis"
-        common_name: "Common Kingfisher"
-      - species_key: "Alcedo_meninting"
-        scientific_name: "Alcedo meninting"
-        common_name: "Blue-eared Kingfisher"
-      - species_key: "Anthracoceros_albirostris"
-        scientific_name: "Anthracoceros albirostris"
-        common_name: "Oriental Pied Hornbill"
-      - species_key: "Centropus_bengalensis"
-        scientific_name: "Centropus bengalensis"
-        common_name: "Lesser Coucal"
-      - species_key: "Copsychus_malabaricus"
-        scientific_name: "Copsychus malabaricus"
-        common_name: "White-rumped Shama"
-      - species_key: "Copsychus_saularis"
-        scientific_name: "Copsychus saularis"
-        common_name: "Oriental Magpie-Robin"
-      - species_key: "Dicaeum_trigonostigma"
-        scientific_name: "Dicaeum trigonostigma"
-        common_name: "Orange-bellied Flowerpecker"
-      - species_key: "Dicrurus_paradiseus"
-        scientific_name: "Dicrurus paradiseus"
-        common_name: "Greater Racket-tailed Drongo"
-      - species_key: "Eurystomus_orientalis"
-        scientific_name: "Eurystomus orientalis"
-        common_name: "Dollarbird"
-      - species_key: "Halcyon_smyrnensis"
-        scientific_name: "Halcyon smyrnensis"
-        common_name: "White-throated Kingfisher"
-      - species_key: "Lanius_schach"
-        scientific_name: "Lanius schach"
-        common_name: "Long-tailed Shrike"
-      - species_key: "Orthotomus_atrogularis"
-        scientific_name: "Orthotomus atrogularis"
-        common_name: "Dark-necked Tailorbird"
-      - species_key: "Orthotomus_sutorius"
-        scientific_name: "Orthotomus sutorius"
-        common_name: "Common Tailorbird"
-      - species_key: "Pycnonotus_goiavier"
-        scientific_name: "Pycnonotus goiavier"
-        common_name: "Yellow-vented Bulbul"
-
-  unknown_open_set:
-    source: "Sumatran Non-Bird Fauna"
-    manifest_path: "data/manifests/unknown_open_set_manifest.csv"
-    audio_directory: "data/unknown_open_set/"
-    taxa_included:
-      - "Insects (Cicadas/Orthoptera)"
-      - "Amphibians (Frogs/Toads)"
-      - "Mammals (Primates/Bats)"
-
+    source: BirdCLEF+ 2026 train_audio
+    geographic_focus: Pantanal, Mato Grosso do Sul, Brazil
+    num_species: 20
+    freeze_manifest_path: data/manifests/species_freeze.csv
+    split_manifest_path: data/manifests/dataset_split.csv
+    audio_directory: data/BirdClef/train_audio/
+    selection_rules:
+      class_name: Aves
+      collection: XC
+      rating_min: 3.0
+      n_klip_min: 20
+      n_author_min: 3
+  open_set_negatives:
+    types:
+      type_a:
+        description: Unknown birds from BirdCLEF+ 2026 not in gallery
+        source: BirdCLEF+ 2026 train_audio
+      type_b:
+        description: Non-bird taxa from BirdCLEF+ 2026 (Amphibia, Reptilia, Mammalia, Insecta)
+        source: BirdCLEF+ 2026 train_audio
+      type_c:
+        description: Pure background environmental noise from ITERA campus
+        source: data/itera_noise/
   itera_noise:
-    directory: "data/itera_noise/"
+    directory: data/itera_noise/
+    manifest_path: data/manifests/itera_noise_manifest.csv
     sampling_rate: 32000
     sub_locations:
-      - "Embung ITERA (Aquatic / Amphibian ambient)"
-      - "Arboretum / Kebun Raya ITERA (Forest canopy biophony)"
-      - "Area Terbuka / Gedung Kuliah (Anthropogenic traffic/construction)"
-
-  itera_soundscape:
-    annotations_directory: "data/itera_soundscape_annotations/"
-    validation_subset_minutes: 30
+      - Embung ITERA (Aquatic / Amphibian ambient)
+      - Arboretum / Kebun Raya ITERA (Forest canopy biophony)
+      - Area Terbuka / Gedung Kuliah (Anthropogenic traffic/HVAC)
+  domain_shift_e4:
+    source: BirdCLEF+ 2026 train_soundscapes
+    directory: data/BirdClef/train_soundscapes/

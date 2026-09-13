@@ -1,42 +1,39 @@
 # Rencana Eksperimen & Logbook Pelaksanaan (DSIC-2706)
 
-Repositori ini memuat rencana kerja eksperimental 4 minggu (30 hari) dan rekam jejak tindak lanjut revisi bimbingan untuk topik penelitian:
+Repositori ini memuat rencana kerja eksperimental 4 minggu (30 hari) dan rekam jejak bimbingan untuk topik penelitian:
 **"Mencari Audio yang Mirip Ketika Datanya Terbatas" (DSIC-2706)**  
-*Noise and Domain-Shift Robustness of Audio Representations for Cross-Domain Bioacoustic Retrieval: From Xeno-Canto to Environmental Soundscapes*
+*Noise and Domain-Shift Robustness of Frozen Audio Representations for Bioacoustic Similarity Retrieval: A Controlled Evaluation on BirdCLEF+ 2026 with Field-Recorded Tropical Noise*
 
 * **Mahasiswa:** Fabio Banyu Cyto (NIM: 123450104)
 * **Dosen Pembimbing:** Bapak Ardika
 * **Program Studi:** Sains Data, Institut Teknologi Sumatera (ITERA)
-* **Terakhir Diperbarui:** 07 September 2026 (Audit Revisi Supervisi Komprehensif)
+* **Status Terkini:** Minggu Ke-1 (GATE 1-R) Selesai 100% per 12 September 2026 (Pivot BirdCLEF+ 2026, 20 Spesies, 4.351 Klip Audio, E0 & E1 Lolos). Minggu 2 s.d 4 Terjadwal (Menunggu Perekaman Lapangan AudioMoth ITERA).
 
 ---
 
-> [!TIP]
-> ### 📖 Dokumen Rekam Jejak Revisi Terbaru:
-> Seluruh matriks penyelesaian audit pembimbing per 7 September 2026 (C-01, C-02, C-03, M-01 s/d M-07) lengkap dengan **tautan berkas, baris kode, gambar kurva 95% CI, dan tabel data empiris** tercatat secara konsisten di:  
-> 👉 **[CATATAN_PROGRES_BIMBINGAN.md](./CATATAN_PROGRES_BIMBINGAN.md)**
+### Dokumen Rekam Jejak Revisi & Progres:
+Seluruh catatan kemajuan, audit metodologi, dan bukti numerik tercatat secara kronologis di:  
+👉 **[CATATAN_PROGRES_BIMBINGAN.md](./CATATAN_PROGRES_BIMBINGAN.md)**
 
 ---
 
-## 🗺️ Peta Navigasi Rencana Eksperimen & Status Gate
+## Peta Navigasi Rencana Eksperimen & Status Gate
 
-| Direktori Rencana | Fokus & Target Mingguan | Kesiapan Kriteria Gate | Tautan Dokumen |
+| Direktori Rencana | Fokus & Target Mingguan | Status Pelaksanaan | Tautan Dokumen |
 | :--- | :--- | :---: | :--- |
-| **[Minggu 1](./minggu-1/README.md)** | Dataset, Manifest, Standarisasi Audio, & Feasibility Pipeline | **Kriteria Teknis Terpenuhi (16 Spesies Sumatera, 416 Audio, 0 Leakage)** | [Buka Rencana Minggu 1](./minggu-1/README.md) |
-| **[Minggu 2](./minggu-2/README.md)** | Controlled Noise Robustness (Paired SNR Stress-Testing) | **Kriteria Teknis Terpenuhi (Model BirdNET Asli 1024-d, Retensi 80.1%)** | [Buka Rencana Minggu 2](./minggu-2/README.md) |
-| **[Minggu 3](./minggu-3/README.md)** | Open-Set Rejection, Kalibrasi $\tau^*$, & Validasi Soundscape | **Open-Set Dinamis Terpenuhi (C-02 Fix) — Validasi Lapangan ITERA Ditunda (D-03)** | [Buka Rencana Minggu 3](./minggu-3/README.md) |
-| **[Minggu 4](./minggu-4/README.md)** | Statistik Inferensial (Bootstrap CI 95%), Naskah, & Freeze Code | **Selesai (Grafik 300 DPI Pita Galat & Notebook Resmi Siap)** | [Buka Rencana Minggu 4](./minggu-4/README.md) |
+| **[Minggu 1](./minggu-1/README.md)** | Dataset BirdCLEF+ 2026 (20 Spesies), Standarisasi Audio (32 kHz, 5s, RMS 0.05), EDA, E0 (Pipeline Sanity), dan E1 (Clean Retrieval) | **SELESAI 100% (GATE 1-R LOLOS)**<br>• 20 Spesies Target (4.351 Berkas Audio)<br>• Strict Recordist-Disjoint (0 Overlap Author, ID, Path)<br>• $R_2$ (BirdNET) 95.0% > $R_1$ 60.0% > $R_0$ 27.5% >> $R_3$ 6.5%<br>• Suite Uji Saintifik: 9/9 PASS (100.0%) | [Buka Dokumen Minggu 1](./minggu-1/README.md) |
+| **[Minggu 2](./minggu-2/README.md)** | Akuisisi Derau Lapangan AudioMoth ITERA & Controlled Noise Robustness (Eksperimen E2: Paired Stress-Testing pada SNR +20, +10, 0, -5 dB) | **TERJADWAL (BELUM DILAKUKAN)**<br>*(Menunggu perekaman fisik AudioMoth ITERA / H8–H14)* | [Buka Rencana Minggu 2](./minggu-2/README.md) |
+| **[Minggu 3](./minggu-3/README.md)** | Open-Set Rejection & Kalibrasi Ambang Batas $\tau$ (Eksperimen E3) serta Domain Shift Real Soundscape (E4) | **TERJADWAL (BELUM DILAKUKAN)**<br>*(Terjadwal untuk Minggu Ke-3)* | [Buka Rencana Minggu 3](./minggu-3/README.md) |
+| **[Minggu 4](./minggu-4/README.md)** | Analisis Kasus Kegagalan (E5), Statistik Inferensial (Bootstrap CI 95%), Naskah Skripsi, & Freeze Code | **TERJADWAL (BELUM DILAKUKAN)**<br>*(Terjadwal untuk Minggu Ke-4)* | [Buka Rencana Minggu 4](./minggu-4/README.md) |
 
 ---
 
-## 📑 Hubungan Terhadap Logbook Pertemuan Bimbingan
+## Hubungan Terhadap Tahapan Bimbingan
 
-Struktur dokumentasi di folder `Rencana-eksperimen-bimbingan/` ini dirancang untuk menjadi bukti fisik pendukung pada **Logbook 14 Pertemuan** dan **Checklist Artefak Minimum Tugas Akhir**:
+Dokumentasi di folder `Rencana-eksperimen-bimbingan/` ini menjadi bukti fisik terverifikasi:
 
-* **P1 (Penetapan Topik & RQ):** [docs/research/research-charter.md](../docs/research/research-charter.md)
-* **P2 (Dataset, Pembanding, & Ukuran Keberhasilan):** [docs/research/scope-freeze.md](../docs/research/scope-freeze.md) (16 Spesies Aktual)
-* **P3 (Rencana Eksperimen & Protokol Pengukuran):** [Rencana Minggu 2](./minggu-2/README.md) dan [docs/protocols/itera-recording.md](../docs/protocols/itera-recording.md)
-* **P4 (Hasil Pembanding Pertama):** [CATATAN_PROGRES_BIMBINGAN.md](./CATATAN_PROGRES_BIMBINGAN.md) (Bagian Hasil Eksperimen Nyata)
-* **P5 (Kesiapan Data & Pipeline Bebas Leakage):** [run_tests.py](../run_tests.py) (**9/9 Test Lolos 100%**)
-* **P6 (Eksperimen Utama & Open-Set Calibration):** [results/processed/threshold_transfer_table.csv](../results/processed/threshold_transfer_table.csv)
-* **P7 (Rencana Pengujian Lapangan ITERA):** [docs/protocols/itera-recording.md](../docs/protocols/itera-recording.md) *(Akan dilaksanakan pasca-bimbingan)*
+* **Tahap 1 (Dataset 20 Spesies BirdCLEF+, Manifes Bebas Bocor, & Baseline E0/E1):** Telah selesai di [Minggu 1](./minggu-1/README.md).
+* **Tahap 2 (Akuisisi AudioMoth ITERA & Ketahanan Derau E2):** Dirancang pada [Minggu 2](./minggu-2/README.md).
+* **Tahap 3 (Open-Set & Kalibrasi $\tau$ E3):** Dirancang pada [Minggu 3](./minggu-3/README.md).
+* **Tahap 4 (Evaluasi Lengkap & Naskah Akhir):** Dirancang pada [Minggu 4](./minggu-4/README.md).
+

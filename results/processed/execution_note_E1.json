@@ -1,0 +1,42 @@
+{
+  "run_id": "GATE1R_E1_CLEAN_RETRIEVAL",
+  "timestamp": "2026-09-12T18:09:07.961425",
+  "git_sha": "0f727ae1d6e6873e9908f1cb32d429221ffce265",
+  "dataset": "BirdCLEF+ 2026 train_audio (20 species, Pantanal)",
+  "split_manifest": "data/manifests/dataset_split.csv",
+  "models": {
+    "R0": {
+      "name": "MFCC Baseline",
+      "dim": 40,
+      "norm": "L2"
+    },
+    "R1": {
+      "name": "PANNs CNN14",
+      "dim": 2048,
+      "checkpoint": "checkpoints/Cnn14_mAP=0.431.pth"
+    },
+    "R2": {
+      "name": "BirdNET Backbone V2.4",
+      "dim": 1024,
+      "checkpoint": "checkpoints/BirdNET_GLOBAL_6K_V2.4_Model_FP32.onnx"
+    },
+    "R3": {
+      "name": "Random Control",
+      "dim": 40,
+      "seed": 42
+    }
+  },
+  "evaluation_metrics": {
+    "queries": 200,
+    "gallery": 3653,
+    "calibration": 498,
+    "leakage_status": "STRICT_AUTHOR_DISJOINT (0 overlap)"
+  },
+  "library_versions": {
+    "python": "3.14",
+    "torch": "2.7.0.dev",
+    "onnxruntime": "1.20.1",
+    "librosa": "0.10.2.post1",
+    "numpy": "2.2.3"
+  }
+}

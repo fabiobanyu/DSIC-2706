@@ -16,9 +16,10 @@ OUTPUT_FILE = PROJECT_ROOT / "artifacts/reproducibility/manifest_sha256.txt"
 OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 manifest_files = [
-    "target_birds_manifest.csv",
     "dataset_split.csv",
-    "unknown_open_set_manifest.csv",
+    "species_freeze.csv",
+    "species_excluded.csv",
+    "itera_noise_manifest.csv",
 ]
 
 def get_file_sha256(path: Path) -> str:
@@ -43,21 +44,26 @@ def main():
     for fname in manifest_files:
         fpath = MANIFEST_DIR / fname
         if not fpath.exists():
-            print(f"[!] File {fname} tidak ditemukan!")
             continue
         sha = get_file_sha256(fpath)
         lines.append(f"{fname} : {sha}")
         print(f"[+] {fname:<30} : {sha}")
 
-    lines.extend([
-        "",
-        "# Baseline Verifikasi Model Asli R2 (BirdNET) @ SNR 0 dB:",
-        "mAP@10    : 0.509081",
-        "Recall@10 : 0.368139",
-        "Top1_Acc  : 0.755319",
-        "Frozen Tau: 0.648770",
-        ""
-    ])
+    # Baseline E1: baca dari hasil eksperimen aktual (bukan hardcode)
+    e1_csv = PROJECT_ROOT / "results/processed/clean_retrieval_table.csv"
+    if e1_csv.exists():
+        import csv
+        with open(e1_csv, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            lines.append("")
+            lines.append("# Baseline Verifikasi E1 Clean Retrieval (dari results/processed/clean_retrieval_table.csv):")
+            for row in reader:
+                name = row.get("name", row.get("representation", ""))
+                top1 = row.get("Top1_Accuracy", "")
+                mAP = row.get("mAP@10", "")
+                mrr = row.get("MRR", "")
+                lines.append(f"{name} : Top1={top1}% mAP@10={mAP} MRR={mrr}")
+            lines.append("")
 
     OUTPUT_FILE.write_text("\n".join(lines), encoding="utf-8")
     print("\n" + "=" * 70)

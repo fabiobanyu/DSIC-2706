@@ -1,10 +1,13 @@
 import sys
-import os
+from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.dsic2706.features.mfcc import cosine_similarity
-from src.dsic2706.retrieval.engine import compute_query_retrieval
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.mfcc import cosine_similarity
+from src.retrieve import compute_query_retrieval
 
 
 def test_cosine_similarity_properties():

@@ -1,48 +1,78 @@
-"""
-Unit Test: tests/test_split_leakage.py
-Memvalidasi tidak adanya data leakage antar-split:
-- Zero recording ID overlap antara Gallery dan Query.
-- Zero file path overlap antara Gallery dan Query.
-"""
-
 import os
+from pathlib import Path
 import pandas as pd
 
-SPLIT_PATH = "d:/FILE AND TASK/TA/data/manifests/dataset_split.csv"
+
+def _get_split_path() -> Path:
+    current = Path(__file__).resolve()
+    for parent in [current.parent, current.parent.parent, current.parent.parent.parent]:
+        target = parent / "data" / "manifests" / "dataset_split.csv"
+        if target.exists():
+            return target
+    raise FileNotFoundError(f"Manifes dataset_split.csv tidak ditemukan dari lokasi {current}!")
+
+
+SPLIT_PATH = _get_split_path()
 
 
 def test_zero_leakage_between_gallery_and_query():
-    if not os.path.exists(SPLIT_PATH):
-        pytest.skip(f"Dataset split belum ada di {SPLIT_PATH}")
-
+    """Memverifikasi zero ID overlap antara Gallery, Query, dan Calibration."""
     df = pd.read_csv(SPLIT_PATH)
-    gallery_ids = set(df[df['split_role'] == 'gallery']['id'].astype(str))
-    query_ids = set(df[df['split_role'] == 'query_clean']['id'].astype(str))
-
-    # Recording ID overlap
-    overlap = gallery_ids.intersection(query_ids)
-    assert len(overlap) == 0, f"Ditemukan kebocoran {len(overlap)} ID rekaman antara Gallery dan Query: {overlap}"
+    id_col = "recording_id" if "recording_id" in df.columns else "id"
+    gallery_ids = set(df[df['split_role'] == 'gallery'][id_col].astype(str))
+    query_ids = set(df[df['split_role'] == 'query_clean'][id_col].astype(str))
+    calib_ids = set(df[df['split_role'] == 'calibration'][id_col].astype(str))
+    
+    # 1. Gallery vs Query
+    overlap_g_q = gallery_ids.intersection(query_ids)
+    assert len(overlap_g_q) == 0, f"Ditemukan kebocoran {len(overlap_g_q)} ID rekaman antara Gallery dan Query: {overlap_g_q}"
+    
+    # 2. Gallery vs Calibration
+    overlap_g_c = gallery_ids.intersection(calib_ids)
+    assert len(overlap_g_c) == 0, f"Ditemukan kebocoran {len(overlap_g_c)} ID rekaman antara Gallery dan Calibration: {overlap_g_c}"
+    
+    # 3. Query vs Calibration
+    overlap_q_c = query_ids.intersection(calib_ids)
+    assert len(overlap_q_c) == 0, f"Ditemukan kebocoran {len(overlap_q_c)} ID rekaman antara Query dan Calibration: {overlap_q_c}"
 
 
 def test_zero_filepath_leakage():
-    if not os.path.exists(SPLIT_PATH):
-        return
-
+    """Memverifikasi zero file_path overlap antara Gallery, Query, dan Calibration."""
     df = pd.read_csv(SPLIT_PATH)
     gallery_paths = set(df[df['split_role'] == 'gallery']['file_path'].dropna())
     query_paths = set(df[df['split_role'] == 'query_clean']['file_path'].dropna())
-
-    overlap = gallery_paths.intersection(query_paths)
-    assert len(overlap) == 0, f"Ditemukan kebocoran path berkas antara Gallery dan Query: {overlap}"
+    calib_paths = set(df[df['split_role'] == 'calibration']['file_path'].dropna())
+    
+    assert len(gallery_paths.intersection(query_paths)) == 0, "Ditemukan kebocoran path berkas antara Gallery dan Query"
+    assert len(gallery_paths.intersection(calib_paths)) == 0, "Ditemukan kebocoran path berkas antara Gallery dan Calibration"
+    assert len(query_paths.intersection(calib_paths)) == 0, "Ditemukan kebocoran path berkas antara Query dan Calibration"
 
 
 def test_zero_recordist_leakage_global():
-    if not os.path.exists(SPLIT_PATH):
-        return
-
+    """Memverifikasi strict global recordist/author disjoint di ketiga subset (0 author overlap)."""
     df = pd.read_csv(SPLIT_PATH)
-    gallery_recs = set(df[df['split_role'] == 'gallery']['recordist'].dropna().unique())
-    query_recs = set(df[df['split_role'] == 'query_clean']['recordist'].dropna().unique())
+    rec_col = "author" if "author" in df.columns else "recordist"
+    
+    # Penanganan eksplisit author == "Unknown" (Audit H2.1 & H3.2, Checklist Gate 1-R)
+    # Rekaman dengan author tak dikenal (Unknown/NaN/kosong) tidak boleh masuk ke split
+    # untuk mencegah pengelompokan semu atau lolos/gagal kebocoran secara semu.
+    unknown_mask = df[rec_col].astype(str).str.strip().str.lower().isin(["unknown", "nan", "none", ""])
+    assert not unknown_mask.any(), (
+        f"[H2.1/H3.2 AUDIT ERROR] Ditemukan {unknown_mask.sum()} rekaman dengan author == 'Unknown' "
+        f"atau kosong pada {SPLIT_PATH.name}!"
+    )
 
-    overlap = gallery_recs.intersection(query_recs)
-    assert len(overlap) == 0, f"Ditemukan kebocoran recordist antara Gallery dan Query: {overlap}"
+    gallery_recs = set(df[df['split_role'] == 'gallery'][rec_col].dropna().unique())
+    query_recs = set(df[df['split_role'] == 'query_clean'][rec_col].dropna().unique())
+    calib_recs = set(df[df['split_role'] == 'calibration'][rec_col].dropna().unique())
+    
+    overlap_g_q = gallery_recs.intersection(query_recs)
+    assert len(overlap_g_q) == 0, f"Ditemukan kebocoran author antara Gallery dan Query: {overlap_g_q}"
+    
+    overlap_g_c = gallery_recs.intersection(calib_recs)
+    assert len(overlap_g_c) == 0, f"Ditemukan kebocoran author antara Gallery dan Calibration: {overlap_g_c}"
+    
+    overlap_q_c = query_recs.intersection(calib_recs)
+    assert len(overlap_q_c) == 0, f"Ditemukan kebocoran author antara Query dan Calibration: {overlap_q_c}"
+
+

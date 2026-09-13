@@ -1,13 +1,14 @@
 # Rekam Jejak Audit Integritas & Reproducibility DSIC-2706
-# Tanggal: 07 September 2026
+# Tanggal: 12 September 2026
 # Perintah Pembuat: python scripts/update_manifest_hashes.py
 
-target_birds_manifest.csv : 0a72779153a70b1abdc7f106c0fb248840c17cc07b88611c666dad887f3c99e4
-dataset_split.csv : af51a1026b6ae493897973ba25671bbea647df04996a3172ddec0631a51edee5
-unknown_open_set_manifest.csv : 34cd49eb11cac703ed418f2d4077e5d93d7e503add74bd1eaa7e9c390e3ec3af
+dataset_split.csv : 4fb0681aab39415384cf85c2f43b3b83f932ed08a97364d19c50e39fd9b27d3e
+species_freeze.csv : 2267c13535546b02a090ad67ca4eecdf443dc11e348f44b3a3d7fea51bc71f6a
+species_excluded.csv : 36046986f5b16b718c778b3115e773abf949fa5861c7f6ccd9b6765a09289ec7
+itera_noise_manifest.csv : 6f2eea8985be845260836653400d8ccef675c19cf5c628ce98d89fc5fe0de3c7
 
-# Baseline Verifikasi Model Asli R2 (BirdNET) @ SNR 0 dB:
-mAP@10    : 0.509081
-Recall@10 : 0.368139
-Top1_Acc  : 0.755319
-Frozen Tau: 0.648770
+# Baseline Verifikasi E1 Clean Retrieval (dari results/processed/clean_retrieval_table.csv):
+R0: MFCC Baseline (40-d) : Top1=27.500000000000004% mAP@10=0.13194880952380952 MRR=0.42244051265615723
+R1: PANNs CNN14 (2048-d) : Top1=60.0% mAP@10=0.41523432539682537 MRR=0.7005128099577479
+R2: BirdNET Backbone (1024-d) : Top1=95.0% mAP@10=0.9126194444444444 MRR=0.9657797619047619
+R3: Random Control (40-d) : Top1=6.5% mAP@10=0.01900952380952381 MRR=0.17789747862256608

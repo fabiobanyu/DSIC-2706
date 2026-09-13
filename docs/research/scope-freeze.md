@@ -4,59 +4,62 @@ Dokumen ini mencatat batasan ruang lingkup taksonomi, pra-pemrosesan, dan parame
 
 ---
 
-## 1. Taksonomi Target (16 Spesies Burung Sumatera)
+## 1. Taksonomi Target (20 Spesies Burung Neotropis Pantanal)
 
-### Amandemen Resmi Bertanggal (Versi 2.0 — 7 September 2026)
-Berdasarkan ketersediaan data rekaman kualitas tinggi (Grade A/B) pada repositori Xeno-Canto dan penguatan relevansi ekologis bioakustik Pulau Sumatera, ruang lingkup taksonomi target secara resmi diformalkan pada **16 spesies burung aktual** (mencakup 5 spesies endemik Sumatera dan burung hutan pegunungan) dengan total **416 rekaman audio**:
+### Amandemen Resmi Bertanggal (Versi 3.0 — 12 September 2026 / Keputusan Kedua)
+Berdasarkan audit Gate 1 tanggal 12 September 2026 dan keputusan pembimbing (DEC-09 dan DEC-10), ruang lingkup dataset utama dialihkan ke **BirdCLEF+ 2026 (`train_audio`)** dengan memfilter taksa burung (*Aves*) koleksi Xeno-Canto berkategori rating >= 3.0 serta memilih 20 taksa dengan diversitas perekam unik tertinggi ($N_{\text{author}}$) guna menjamin keabsahan partisi *author-disjoint split*.
 
-| No | Spesies Kunci | Nama Ilmiah | Nama Umum (Inggris) | Status Endemik | Jumlah Klip |
-| :-: | :--- | :--- | :--- | :-: | :-: |
-| 1 | `Aethopyga_siparaja` | *Aethopyga siparaja* | Crimson Sunbird | Bukan | 26 |
-| 2 | `Batrachostomus_cornutus` | *Batrachostomus cornutus* | Sunda Frogmouth | Bukan | 16 |
-| 3 | `Brachypteryx_montana` | *Brachypteryx montana* | White-browed Shortwing | Bukan | 35 |
-| 4 | `Carpococcyx_viridis` | *Carpococcyx viridis* | Sumatran Ground Cuckoo | **Endemik** | 20 |
-| 5 | `Dicaeum_trigonostigma` | *Dicaeum trigonostigma* | Orange-bellied Flowerpecker | Bukan | 24 |
-| 6 | `Dicrurus_hottentottus` | *Dicrurus hottentottus* | Hair-crested Drongo | Bukan | 35 |
-| 7 | `Gypsophila_rufipectus` | *Gypsophila rufipectus* | Rusty-breasted Wren-Babbler | **Endemik** | 31 |
-| 8 | `Halcyon_smyrnensis` | *Halcyon smyrnensis* | White-throated Kingfisher | Bukan | 20 |
-| 9 | `Horornis_vulcanius` | *Horornis vulcanius* | Sunda Bush Warbler | Bukan | 35 |
-| 10 | `Malacopteron_affine` | *Malacopteron affine* | Sooty-capped Babbler | Bukan | 18 |
-| 11 | `Myophonus_melanurus` | *Myophonus melanurus* | Shiny Whistling Thrush | **Endemik** | 15 |
-| 12 | `Napothera_albostriata` | *Napothera albostriata* | Sumatran Wren-Babbler | **Endemik** | 20 |
-| 13 | `Orthotomus_ruficeps` | *Orthotomus ruficeps* | Ashy Tailorbird | Bukan | 30 |
-| 14 | `Pnoepyga_pusilla` | *Pnoepyga pusilla* | Pygmy Cupwing | Bukan | 37 |
-| 15 | `Polyplectron_chalcurum` | *Polyplectron chalcurum* | Bronze-tailed Peacock-Pheasant | **Endemik** | 19 |
-| 16 | `Spilornis_cheela` | *Spilornis cheela* | Crested Serpent Eagle | Bukan | 35 |
-| **Total** | **16 Spesies** | | | **5 Endemik** | **416 Klip** |
+Daftar resmi **20 spesies burung target** dengan total **4.351 rekaman audio** terkelola:
 
-*Catatan Distribusi Klip:* Minimum 15 klip per spesies (*Myophonus melanurus*), maksimum 37 klip (*Pnoepyga pusilla*), dengan rata-rata 26 klip per spesies.
+| No | Spesies Kunci | Nama Ilmiah | Nama Umum (Inggris) | Jumlah Klip | Jumlah Author | Median Rating |
+| :-: | :--- | :--- | :--- | :-: | :-: | :-: |
+| 1 | `coffal1` | *Micrastur semitorquatus* | Collared Forest-Falcon | 253 | 129 | 4.0 |
+| 2 | `sobtyr1` | *Camptostoma obsoletum* | Southern Beardless Tyrannulet | 331 | 126 | 4.0 |
+| 3 | `greant1` | *Taraba major* | Great Antshrike | 337 | 124 | 4.0 |
+| 4 | `squcuc1` | *Piaya cayana* | Common Squirrel-Cuckoo | 332 | 123 | 4.0 |
+| 5 | `roahaw` | *Rupornis magnirostris* | Roadside Hawk | 243 | 122 | 4.0 |
+| 6 | `trsowl` | *Megascops choliba* | Tropical Screech Owl | 234 | 122 | 4.0 |
+| 7 | `banana` | *Coereba flaveola* | Bananaquit | 301 | 121 | 4.0 |
+| 8 | `baffal1` | *Micrastur ruficollis* | Barred Forest-Falcon | 273 | 121 | 4.0 |
+| 9 | `soulap1` | *Vanellus chilensis* | Southern Lapwing | 243 | 120 | 4.5 |
+| 10 | `strcuc1` | *Tapera naevia* | Striped Cuckoo | 250 | 117 | 4.0 |
+| 11 | `pabspi1` | *Synallaxis albescens* | Pale-breasted Spinetail | 214 | 117 | 4.0 |
+| 12 | `yeofly1` | *Tolmomyias sulphurescens* | Yellow-olive Flatbill | 393 | 115 | 4.0 |
+| 13 | `gycwor1` | *Aramides cajaneus* | Grey-cowled Wood Rail | 219 | 115 | 4.0 |
+| 14 | `compau` | *Nyctidromus albicollis* | Pauraque | 206 | 115 | 4.5 |
+| 15 | `barant1` | *Thamnophilus doliatus* | Barred Antshrike | 294 | 114 | 4.0 |
+| 16 | `pirfly1` | *Legatus leucophaius* | Piratic Flycatcher | 288 | 114 | 4.0 |
+| 17 | `linwoo1` | *Dryocopus lineatus* | Lineated Woodpecker | 254 | 113 | 4.0 |
+| 18 | `whtdov` | *Leptotila verreauxi* | White-tipped Dove | 269 | 111 | 4.0 |
+| 19 | `bobfly1` | *Megarynchus pitangua* | Boat-billed Flycatcher | 272 | 107 | 4.0 |
+| 20 | `trokin` | *Tyrannus melancholicus* | Tropical Kingbird | 220 | 105 | 4.0 |
+| **Total** | **20 Spesies** | | | **5.426 Klip Kandidat** | **629 Author Global** | **4.0** |
 
-#### Alasan & Justifikasi Akademis Penggantian Spesies dari Versi Awal:
-1. **Peningkatan Nilai Konservasi & Kebaruan Ilmiah:** Daftar baru mencakup 5 spesies burung endemik Sumatera yang berstatus terancam punah/langka (seperti Tokhtor Sumatera *Carpococcyx viridis* dan Kuwau-kerdil *Polyplectron chalcurum*), menggantikan spesies kosmopolitan umum dari draf awal.
-2. **Kesesuaian Lisensi & Kualitas Audio:** Seluruh 416 rekaman terverifikasi memiliki lisensi terbuka Creative Commons (BY-NC-SA / BY-NC-ND) dan kualitas Grade A/B pada Xeno-Canto.
-3. **Pencegahan Kebocoran Data (Recordist Disjoint):** Setiap spesies terpilih memiliki jumlah perekam independen yang memadai ($\ge 2$ perekam) sehingga pemisahan *Gallery* dan *Query* dapat dilakukan tanpa adanya tumpang tindih perekam (*Zero Recordist Overlap*).
+#### Distribusi Partisi Dataset Split (`data/manifests/dataset_split.csv`):
+- **Galeri (*Gallery Bank*):** 3.653 rekaman (377 author independen).
+- **Kueri Bersih (*Query Clean*):** Tepat 200 rekaman (20 spesies x 10 kueri per spesies; 68 author independen).
+- **Subset Kalibrasi (*Calibration*):** 498 rekaman (95 author independen).
+- **Status Kebocoran Perekam:** **Strict Global Author-Disjoint** (0 author tumpang tindih antara Galeri, Kueri, maupun Kalibrasi).
 
 ---
 
-### Catatan Historis Ruang Lingkup Awal (Versi 1.0 — Draf Awal)
-*Daftar draf awal sebelum kurasi lapangan komprehensif:*  
-*Acrocephalus orientalis, Aethopyga siparaja, Alcedo atthis, Alcedo meninting, Anthracoceros albirostris, Centropus bengalensis, Copsychus malabaricus, Copsychus saularis, Dicaeum trigonostigma, Dicrurus paradiseus, Eurystomus orientalis, Halcyon smyrnensis, Lanius schach, Orthotomus atrogularis, Orthotomus sutorius, Pycnonotus goiavier.*  
-*(Sebanyak 13 spesies di atas telah digantikan secara resmi oleh daftar pada Versi 2.0 di atas).*
+### Catatan Historis Ruang Lingkup Sebelumnya
+- **Versi 2.0 (07 September 2026):** 16 taksa burung Sumatera (416 rekaman, kurasi manual Xeno-Canto). Dibatalkan oleh audit Gate 1 (12 September 2026) karena kelangkaan data kueri independen ($n=14$), kebocoran perekam (C-04), dan ketergantungan derau sintetis (M-05).
+- **Versi 1.0 (Draf Awal):** 16 spesies kosmopolitan umum (digantikan oleh Versi 2.0).
 
 ---
 
 ## 2. Parameter Pra-pemrosesan Audio (Tetap Dibekukan)
-- Laju Sampel (*Sample Rate*): **32,000 Hz** (diresample otomatis ke 48,000 Hz khusus saat inferensi BirdNET)
-- Kanal: **Mono (1 channel)**
-- Durasi Segmen: **5.0 detik (160,000 sampel)**
-- Seleksi Jendela: **Energi RMS tertinggi (Top-energy window)**
-- Normalisasi Energi: **RMS target 0.05**
+- Laju Sampel (*Sample Rate*): **32.000 Hz** (mono).
+- Durasi Segmen: **5.0 detik** (160.000 sampel).
+- Seleksi Jendela: **Energi RMS tertinggi (*Top-energy sliding window*)**.
+- Normalisasi Energi: **RMS target 0.05** dengan pembatasan puncak kliping <= 1.0.
 
 ---
 
-## 3. Tingkat Degradasi Derau (Tetap Dibekukan)
+## 3. Tingkat Degradasi Derau Terkontrol (Tetap Dibekukan)
 Tingkat degradasi derau aditif dibekukan pada 5 level:
-1. **Clean** ($\text{SNR} = \infty$)
+1. **Clean** (SNR = inf)
 2. **SNR 20 dB** (Derau ringan)
 3. **SNR 10 dB** (Derau sedang)
 4. **SNR 0 dB** (Derau berat / sinyal sebanding derau)
@@ -64,6 +67,7 @@ Tingkat degradasi derau aditif dibekukan pada 5 level:
 
 ---
 
-## 4. Batasan Partisi & Kalibrasi Ambang (M-09)
-Pemisahan ketat (*Strict Global Recordist-Disjoint*) berlaku 100% antara **Gallery** (42 perekam) dan **Query Clean** (26 perekam unik, 0 overlap). Subset kalibrasi terpisah secara independen pada tingkat berkas audio (62 klip), namun berbagi 19 perekam dengan subset `query_clean` (total 29 perekam gabungan query + kalibrasi). Hal ini didokumentasikan secara transparan sebagai keterbatasan metodologis yang berpotensi memicu bias optimistik lokal pada recall di ambang batas $\tau$, namun metrik retrieval primer (`mAP@10` dan `Recall@10`) pada eksperimen E1 dan E2 tetap 100% terlindung dari kebocoran perekam.
-
+## 4. Peran Baru Rekaman AudioMoth Kampus ITERA
+Sesuai audit keputusan kedua, rekaman AudioMoth ITERA **tidak lagi menjadi validasi retrieval spesies**, melainkan murni dipersempit menjadi:
+1. **Bank derau lingkungan nyata (E2):** Segmen *background-only* bebas vokalisasi burung dari 3 tipe lokasi (Embung, Arboretum, Antropogenik) pada 2 waktu (*daypart*).
+2. **Sampel negatif open-set (E3):** Sebagai data uji negatif jenis *pure background*.

@@ -4,9 +4,13 @@ Memvalidasi komputasi kemiripan kosinus dan konsistensi perankingan retrieval.
 """
 
 import sys
+from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, "d:/FILE AND TASK/TA")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from src.mfcc import cosine_similarity, batch_cosine_similarity
 from src.retrieve import compute_query_retrieval
 

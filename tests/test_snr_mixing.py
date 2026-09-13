@@ -4,9 +4,13 @@ Memvalidasi keakuratan formula SNR mixing dan determinisme random seed.
 """
 
 import sys
+from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, "d:/FILE AND TASK/TA")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from src.mix_noise import mix_audio_at_snr, compute_signal_power
 
 

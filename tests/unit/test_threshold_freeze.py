@@ -1,9 +1,12 @@
 import sys
-import os
+from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.dsic2706.open_set.calibration import calibrate_threshold_tau, evaluate_open_set_with_frozen_tau
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.calibrate_threshold import calibrate_threshold_tau, evaluate_open_set_with_frozen_tau
 
 
 def test_threshold_frozen_evaluation():

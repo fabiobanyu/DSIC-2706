@@ -1,0 +1,68 @@
+{
+  "total_train_rows": 35549,
+  "train_columns": [
+    "primary_label",
+    "secondary_labels",
+    "type",
+    "latitude",
+    "longitude",
+    "scientific_name",
+    "common_name",
+    "class_name",
+    "inat_taxon_id",
+    "author",
+    "license",
+    "rating",
+    "url",
+    "filename",
+    "collection"
+  ],
+  "total_taxa": 234,
+  "taxonomy_classes": {
+    "Aves": 162,
+    "Amphibia": 35,
+    "Insecta": 28,
+    "Mammalia": 8,
+    "Reptilia": 1
+  },
+  "collection_distribution": {
+    "XC": 23043,
+    "iNat": 12506
+  },
+  "rating_distribution": {
+    "0.0": 12849,
+    "4.0": 8018,
+    "5.0": 6845,
+    "3.0": 2738,
+    "4.5": 2185,
+    "3.5": 1509,
+    "2.0": 598,
+    "2.5": 518,
+    "1.0": 147,
+    "1.5": 120,
+    "0.5": 22
+  },
+  "selected_target_species_count": 20,
+  "selected_target_species": [
+    "coffal1",
+    "sobtyr1",
+    "greant1",
+    "squcuc1",
+    "roahaw",
+    "trsowl",
+    "banana",
+    "baffal1",
+    "soulap1",
+    "strcuc1",
+    "pabspi1",
+    "yeofly1",
+    "gycwor1",
+    "compau",
+    "barant1",
+    "pirfly1",
+    "linwoo1",
+    "whtdov",
+    "bobfly1",
+    "trokin"
+  ]
+}

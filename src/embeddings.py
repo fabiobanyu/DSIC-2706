@@ -72,8 +72,12 @@ class AudioRepresentationExtractor:
 
             device = "cuda" if torch.cuda.is_available() else "cpu"
             self._device = device
-            # Memuat model PANNs CNN14 dari checkpoint lokal resmi
-            self._model = AudioTagging(checkpoint_path=str(ckpt_path), device=device)
+            # Memuat model PANNs CNN14 dari checkpoint lokal resmi (relative POSIX path)
+            try:
+                rel_ckpt_path = Path(os.path.relpath(ckpt_path, Path.cwd())).as_posix()
+            except Exception:
+                rel_ckpt_path = str(ckpt_path)
+            self._model = AudioTagging(checkpoint_path=rel_ckpt_path, device=device)
 
         elif self.rep_code == "R2":
             # Bioacoustic Pretrained Model (BirdNET V2.4 Backbone, 1024 dimensi)
@@ -95,7 +99,11 @@ class AudioRepresentationExtractor:
             # Prioritaskan CUDA jika tersedia di onnxruntime
             available_providers = ort.get_available_providers()
             providers = ["CUDAExecutionProvider", "CPUExecutionProvider"] if "CUDAExecutionProvider" in available_providers else ["CPUExecutionProvider"]
-            self._model = ort.InferenceSession(str(ckpt_path), providers=providers)
+            try:
+                rel_ckpt_onnx = Path(os.path.relpath(ckpt_path, Path.cwd())).as_posix()
+            except Exception:
+                rel_ckpt_onnx = str(ckpt_path)
+            self._model = ort.InferenceSession(rel_ckpt_onnx, providers=providers)
 
         elif self.rep_code == "R3":
             # Kontrol Acak
